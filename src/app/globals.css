@@ -287,3 +287,79 @@ h1, h2, h3, h4 { font-family: var(--font-display); margin: 0; line-height: 1.25;
   .masthead .ad-leaderboard { flex-basis: 100%; height: 80px; }
   .page-main { gap: 36px; }
 }
+
+/* =================== Dodato uz CMS (v0.2) =================== */
+.photo { overflow: hidden; }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-img { object-fit: cover; }
+.pre { white-space: pre-line; }
+
+.ad-live { padding: 0; overflow: hidden; background: var(--ink); }
+.ad-live img, .ad-live video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ad-live .ad-label { z-index: 1; background: rgba(255, 255, 255, 0.9); color: var(--muted); padding: 1px 5px; }
+.ad-live .ad-title { color: #fff; padding: 16px; }
+
+.article-figure { margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.article-figure figcaption { font-size: 13px; color: var(--muted); }
+.price { margin: 0; font-family: var(--font-display); font-size: 26px; font-weight: 700; }
+.lead-sm { margin: 0; font-size: 17px; line-height: 1.6; max-width: 720px; }
+
+.comments { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.comments li { padding: 14px 0; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+.comments .who { font-weight: 700; }
+.comments p { margin: 4px 0 0; flex-basis: 100%; }
+
+.topic-section .topic-head { border-top: 4px solid var(--accent); background: var(--ink); color: #fff; padding: 18px 20px; display: flex; flex-direction: column; gap: 6px; }
+.topic-section .topic-head h2 { font-size: 22px; }
+.topic-section .topic-head p { margin: 0; color: rgba(255, 255, 255, 0.85); }
+
+/* Stranice usluge i servis */
+.service-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.service-list li { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.service-list h3 { font-size: 17px; margin: 2px 0 4px; }
+.service-list p { margin: 0; }
+.service-list.obits .photo { width: 90px; height: 110px; flex: none; }
+
+.contact-card { background: var(--surface); border: 1px solid var(--line); padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+.contact-card h2 { font-size: 20px; }
+.contact-card dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 8px 14px; font-size: 15px; }
+.contact-card dt { color: var(--muted); font-weight: 600; }
+.contact-card dd { margin: 0; }
+
+.packages { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.package { padding: 20px; border: 1px solid var(--line); background: var(--surface); display: flex; flex-direction: column; gap: 8px; }
+.package.premium { border: 2px solid var(--accent); }
+.package h3 { font-size: 19px; }
+.package p { margin: 0; color: var(--muted); }
+
+/* Stranica firme */
+.firm-top { border-bottom: 1px solid var(--line); }
+.firm-top .container { display: flex; justify-content: space-between; align-items: center; min-height: 64px; }
+.firm-hero { position: relative; background: var(--ink); color: #fff; }
+.firm-cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.55; }
+.firm-cover-empty { display: block; background: linear-gradient(135deg, var(--ink), var(--hill-1)); opacity: 1; }
+.firm-hero-inner { position: relative; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 20px; padding-top: 80px; padding-bottom: 28px; }
+.firm-logo.photo { width: 120px; height: 120px; flex: none; border: 3px solid #fff; background: #fff; }
+.firm-title { display: flex; flex-direction: column; gap: 6px; padding: 16px 18px; background: var(--glass-dark); border: 1px solid var(--glass-border); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); max-width: 680px; }
+.firm-title .kicker { color: var(--accent); }
+.firm-title h1 { font-size: 36px; }
+.firm-title p { margin: 0; color: rgba(255, 255, 255, 0.9); }
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+.gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+.map { width: 100%; height: 360px; border: 0; display: block; background: var(--surface); }
+@media (max-width: 640px) { .firm-title h1 { font-size: 26px; } .firm-logo.photo { width: 84px; height: 84px; } }
+
+/* Forme na sajtu */
+.form { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+.form-grid { width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 16px; }
+.form-grid .full { grid-column: 1 / -1; }
+.form label { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; }
+.form input, .form select, .form textarea { font: inherit; font-weight: 400; padding: 11px 12px; border: 1px solid #c9cbd1; background: #fff; color: var(--ink); border-radius: 0; min-height: 44px; }
+.form input:focus, .form select:focus, .form textarea:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: var(--ink); }
+.hint { font-size: 13px; color: var(--muted); font-weight: 400; margin: 0; }
+.hp { position: absolute; left: -9999px; }
+.upload-preview { max-width: 220px; max-height: 160px; object-fit: cover; }
+.notice { padding: 14px 16px; border-left: 4px solid var(--ink); background: var(--surface); width: 100%; }
+.notice.ok { border-left-color: #1f8a4c; }
+.notice.err { border-left-color: #c0362c; }
+@media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }

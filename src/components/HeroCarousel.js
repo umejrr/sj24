@@ -28,17 +28,20 @@ export default function HeroCarousel({ slides }) {
       onMouseLeave={() => setPauza(false)}
     >
       <div className="hero-stage">
-        <svg className="hero-bg" viewBox="0 0 900 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect width="900" height="500" style={{ fill: 'var(--sky)' }} />
-          <circle cx="690" cy="120" r="70" style={{ fill: 'var(--accent)' }} />
-          <path d="M0 290 C150 240 300 262 450 230 C600 198 750 240 900 210 L900 500 L0 500 Z" style={{ fill: 'var(--hill-1)' }} />
-          <path d="M0 350 C180 310 350 338 520 305 C680 276 800 300 900 290 L900 500 L0 500 Z" style={{ fill: 'var(--hill-2)' }} />
-          <path d="M0 410 C220 385 420 402 620 378 C760 362 840 370 900 365 L900 500 L0 500 Z" style={{ fill: 'var(--hill-3)' }} />
-        </svg>
-        <span className="hero-photo-tag">[Fotografija glavne vesti]</span>
+        {s.slika ? (
+          <img className="hero-bg hero-img" src={s.slika} alt="" />
+        ) : (
+          <svg className="hero-bg" viewBox="0 0 900 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="900" height="500" style={{ fill: 'var(--sky)' }} />
+            <circle cx="690" cy="120" r="70" style={{ fill: 'var(--accent)' }} />
+            <path d="M0 290 C150 240 300 262 450 230 C600 198 750 240 900 210 L900 500 L0 500 Z" style={{ fill: 'var(--hill-1)' }} />
+            <path d="M0 350 C180 310 350 338 520 305 C680 276 800 300 900 290 L900 500 L0 500 Z" style={{ fill: 'var(--hill-2)' }} />
+            <path d="M0 410 C220 385 420 402 620 378 C760 362 840 370 900 365 L900 500 L0 500 Z" style={{ fill: 'var(--hill-3)' }} />
+          </svg>
+        )}
 
         <Link href={`/vesti/${s.slug}`} className="hero-panel" aria-live="polite">
-          <span className="badge">{s.rubrikaNaziv}</span>
+          {s.rubrikaNaziv && <span className="badge">{s.rubrikaNaziv}</span>}
           <h1>{s.naslov}</h1>
           <p>{s.uvod}</p>
           <span className="meta">{s.vreme}</span>

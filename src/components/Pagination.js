@@ -3,7 +3,7 @@ import Link from 'next/link';
 // Numerisane stranice: ‹ 1 2 3 … 12 ›
 export default function Pagination({ strana, ukupno, osnova }) {
   if (ukupno < 2) return null;
-  const href = (p) => (p === 1 ? osnova : `${osnova}?strana=${p}`);
+  const href = (p) => (p === 1 ? osnova : `${osnova}${osnova.includes('?') ? '&' : '?'}strana=${p}`);
 
   const brojevi = [];
   for (let p = 1; p <= ukupno; p++) {

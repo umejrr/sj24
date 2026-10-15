@@ -1,10 +1,12 @@
 import { IconPhoto } from './Icons';
 
-// Privremena zamena za fotografiju dok ne stignu prave slike iz baze.
-export default function Photo({ className = '', label }) {
+// Fotografija; dok je nema, siva zamena sa ikonom.
+export default function Photo({ src, alt = '', className = '', label }) {
   return (
-    <span className={`photo ${className}`} aria-hidden="true">
-      {label ?? <IconPhoto />}
+    <span className={`photo ${className}`} aria-hidden={src ? undefined : 'true'}>
+      {src
+        ? <img src={src} alt={alt} loading="lazy" decoding="async" />
+        : (label ?? <IconPhoto />)}
     </span>
   );
 }

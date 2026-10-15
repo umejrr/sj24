@@ -2,20 +2,24 @@ import Link from 'next/link';
 import Logo from './Logo';
 import AdSlot from './AdSlot';
 import { IconSearch } from './Icons';
-import { rubrike, tickerVesti } from '@/lib/data';
+import { getRubrike, getTicker, getPodesavanja } from '@/lib/db';
+import { getVreme } from '@/lib/vreme';
 import { danasnjiDatum } from '@/lib/format';
 
-export default function Header({ aktivno = 'vesti' }) {
+export default async function Header({ aktivno = 'vesti' }) {
+  const [rubrike, ticker, p, vreme] = await Promise.all([getRubrike(), getTicker(), getPodesavanja(), getVreme()]);
   return (
     <>
       <div className="topbar">
         <div className="container">
-          <span>{danasnjiDatum()} · Sjenica <strong>6°C</strong> oblačno</span>
+          <span>
+            {danasnjiDatum()}
+            {vreme && <> · Sjenica <strong>{vreme.temp}°C</strong> {vreme.opis.toLowerCase()}</>}
+          </span>
           <div className="topbar-links">
-            <a href="#">Facebook</a>
-            <a href="#">Oglašavanje</a>
-            <a href="#">Kontakt</a>
-            <a href="#" className="btn-login">Prijava</a>
+            {p.facebook_url && <a href={p.facebook_url} target="_blank" rel="noopener noreferrer">Facebook</a>}
+            <Link href="/oglasavanje">Oglašavanje</Link>
+            <Link href="/oglasavanje#kontakt">Kontakt</Link>
           </div>
         </div>
       </div>
@@ -23,7 +27,7 @@ export default function Header({ aktivno = 'vesti' }) {
       <header className="masthead">
         <div className="container">
           <Logo size="lg" />
-          <AdSlot format="leaderboard" title="[Udarni baner · Premium oglašivač]" />
+          <AdSlot pozicija="leaderboard" format="leaderboard" />
         </div>
       </header>
 
@@ -45,12 +49,14 @@ export default function Header({ aktivno = 'vesti' }) {
         </div>
       </nav>
 
-      <div className="ticker">
-        <div className="container">
-          <span className="ticker-label">NAJNOVIJE</span>
-          <span className="ticker-text">{tickerVesti.join(' · ')}</span>
+      {ticker.length > 0 && (
+        <div className="ticker">
+          <div className="container">
+            <span className="ticker-label">NAJNOVIJE</span>
+            <span className="ticker-text">{ticker.join(' · ')}</span>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

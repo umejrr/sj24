@@ -1,7 +1,8 @@
 import { IconCloud } from './Icons';
+import { getVreme } from '@/lib/vreme';
 
-// Probni podaci. Sledeći korak: prava prognoza za Sjenicu preko vremenskog servisa.
-export default function Weather() {
+export default async function Weather() {
+  const v = await getVreme();
   return (
     <div className="weather">
       <svg className="weather-bg" viewBox="0 0 300 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -12,17 +13,24 @@ export default function Weather() {
         <div className="weather-top">
           <div>
             <div className="weather-label">VREME · SJENICA</div>
-            <div className="weather-temp">6°</div>
-            <div className="weather-desc">Oblačno · vetar 12 km/h</div>
+            {v ? (
+              <>
+                <div className="weather-temp">{v.temp}°</div>
+                <div className="weather-desc">{v.opis} · vetar {v.vetar} km/h</div>
+              </>
+            ) : (
+              <div className="weather-desc">Prognoza trenutno nije dostupna.</div>
+            )}
           </div>
           <IconCloud />
         </div>
-        <div className="weather-days">
-          <div><span>Subota</span><span>4°</span></div>
-          <div><span>Nedelja</span><span>2°</span></div>
-          <div><span>Ponedeljak</span><span>−1°</span></div>
-        </div>
-        <a href="/servis">Detaljna prognoza</a>
+        {v && (
+          <div className="weather-days">
+            {v.dani.map((d) => (
+              <div key={d.dan}><span>{d.dan}</span><span>{d.max}° / {d.min}°</span></div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

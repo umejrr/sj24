@@ -1,5 +1,4 @@
 import { Sora, Public_Sans } from 'next/font/google';
-import Footer from '@/components/Footer';
 import './globals.css';
 
 const sora = Sora({ subsets: ['latin', 'latin-ext'], weight: ['600', '700', '800'], variable: '--font-sora', display: 'swap' });
@@ -15,10 +14,7 @@ export const viewport = { width: 'device-width', initialScale: 1, themeColor: '#
 export default function RootLayout({ children }) {
   return (
     <html lang="sr-Latn" className={`${sora.variable} ${publicSans.variable}`}>
-      <body>
-        {children}
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

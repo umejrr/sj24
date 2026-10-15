@@ -1,13 +1,16 @@
 import Link from 'next/link';
 import Logo from './Logo';
+import { getPodesavanja } from '@/lib/db';
 
-export default function Footer() {
+export default async function Footer() {
+  const p = await getPodesavanja();
   return (
     <footer className="footer">
       <div className="container footer-cols">
         <div className="footer-col about">
           <Logo size="sm" inverse tagline={false} />
-          <span>Lokalni portal Sjenice i Peštera. Vesti, oglasi i firme na jednom mestu.</span>
+          <span>{p.o_nama}</span>
+          {p.facebook_url && <a href={p.facebook_url} target="_blank" rel="noopener noreferrer">Facebook</a>}
         </div>
         <div className="footer-col">
           <span className="h">Rubrike</span>
@@ -15,19 +18,18 @@ export default function Footer() {
           <Link href="/aktuelno">Aktuelno</Link>
           <Link href="/oglasi">Mali oglasi</Link>
           <Link href="/firme">Imenik firmi</Link>
+          <Link href="/servis">Servis</Link>
         </div>
         <div className="footer-col">
           <span className="h">Za firme</span>
-          <a href="#">Paketi i cene</a>
-          <a href="#">Stranica firme</a>
-          <a href="#">Baneri</a>
+          <Link href="/oglasavanje">Paketi i oglašavanje</Link>
+          <Link href="/oglasi#predaj">Predaj mali oglas</Link>
         </div>
         <div className="footer-col">
-          <span className="h">Portal</span>
-          <a href="#">O nama</a>
-          <a href="#">Impresum</a>
-          <a href="#">Pravila korišćenja</a>
-          <a href="#">Privatnost</a>
+          <span className="h">Kontakt</span>
+          {p.kontakt_email && <a href={`mailto:${p.kontakt_email}`}>{p.kontakt_email}</a>}
+          {p.kontakt_telefon && <a href={`tel:${p.kontakt_telefon.replace(/\s/g, '')}`}>{p.kontakt_telefon}</a>}
+          <Link href="/oglasavanje#kontakt">Piši redakciji</Link>
         </div>
       </div>
       <div className="footer-bottom">
